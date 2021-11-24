@@ -1,4 +1,14 @@
 const app = document.querySelector("#app");
+
+const toRightCase = (val) => {
+  const valAsArr = val.toString();
+  if (valAsArr[valAsArr.length - 1] < 5 && valAsArr[valAsArr.length - 1] > 0) {
+    return `${val} дня`;
+  } else {
+    return `${val} дней`;
+  }
+};
+
 const countRes = () => {
   const date = new Date();
 
@@ -55,22 +65,10 @@ const countRes = () => {
     );
   };
 
-  const timeToNYPhrase = (num) => {
-    const numAsArr = num.toString();
-    if (
-      numAsArr[numAsArr.length - 1] < 5 ||
-      numAsArr[numAsArr.length - 1] > 0
-    ) {
-      return `${num} дня`;
-    } else {
-      return `${num} дней`;
-    }
-  };
-
   app.innerHTML = `${timeOfDay()} </br> 
         Сегодня: ${dayOfWeek()} </br> 
         Текущее время: ${currentTime()} </br>
-        До Нового года осталось ${timeToNYPhrase(timeToNY())}`;
+        До Нового года осталось ${toRightCase(timeToNY())}`;
 };
 
 setInterval(countRes, 1000);
